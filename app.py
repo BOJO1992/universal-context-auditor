@@ -40,7 +40,12 @@ st.markdown("""
 with st.sidebar:
     st.title("⚙️ Configuration")
     st.markdown("---")
-    api_key = st.text_input("Google Gemini API Key", type="password", value=os.getenv("GOOGLE_API_KEY", ""))
+    # Try to get key from environment or streamlit secrets
+    default_key = os.getenv("GOOGLE_API_KEY", "")
+    if not default_key and "GOOGLE_API_KEY" in st.secrets:
+        default_key = st.secrets["GOOGLE_API_KEY"]
+        
+    api_key = st.text_input("Google Gemini API Key", type="password", value=default_key)
     
     st.markdown("### 🎯 Audit Mode")
     audit_mode = st.radio("Select Goal:", [
