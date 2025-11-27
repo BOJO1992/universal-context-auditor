@@ -127,7 +127,7 @@ with col2:
         else:
             try:
                 genai.configure(api_key=api_key)
-                model = genai.GenerativeModel('gemini-1.5-pro-latest')
+                model = genai.GenerativeModel('gemini-1.5-pro')
                 
                 status_text = st.empty()
                 progress_bar = st.progress(0)
